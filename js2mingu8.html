@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>The Document Object</h1>
+<h2>The addEventListener() Method</h2>
+
+<p>Click anywhere in the document to display "Identity!".</p>
+
+<p id="demo"></p>
+<p id="demo2"></p>
+<p id="demo3"></p>
+
+<script>
+document.addEventListener("click", myFunction);
+
+function myFunction() {
+document.getElementById("demo").innerHTML  = "Nama   : Evan Maulana "
+document.getElementById("demo2").innerHTML = "Nim    : 2023610035 "
+document.getElementById("demo3").innerHTML = "Alamat : Pariaman"
+  ;
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Memasukan Data Dengan Dengan Objek</title>
+</head>
+<body>
+    <script>
+    function hitung() {
+        var angka1 = parseFloat(document.fform.angka1.value);
+        var angka2 = parseFloat(document.fform.angka2.value);
+        
+        if (isNaN(angka1) || isNaN(angka2)) {
+            alert("Mohon masukkan angka yang valid");
+            return;
+        }
+        
+        if (angka2 === 0) {
+            alert("Tidak bisa melakukan pembagian dengan nol");
+            return;
+        }
+        
+        document.fform.hasilDiv.value = Math.floor(angka1 / angka2);
+        document.fform.hasilMod.value = angka1 % angka2;
+    }
+    </script>
+
+    <h1>Memasukan Data Dengan Dengan Objek</h1>
+    <hr>
+    
+    <form name="fform">
+        <pre>
+Bilangan 1   : <input type="text" name="angka1">
+Bilangan 2   : <input type="text" name="angka2">
+        </pre>
+        
+        <input type="button" value="Hitung" onclick="hitung()">
+        <input type="reset" value="Bersihkan">
+        
+        <h3>Hasil</h3>
+        <pre>
+Hasil DIV  : <input type="text" name="hasilDiv" readonly>
+Hasil MOD  : <input type="text" name="hasilMod" readonly>
+        </pre>
+    </form>
+</body>
+</html>

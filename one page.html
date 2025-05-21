@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Sederhana</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #0078d7;
+            text-align: center;
+        }
+        .box {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            padding: 8px 15px;
+            background-color: #0078d7;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #006cc1;
+        }
+        .output {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            min-height: 20px;
+        }
+        #warna {
+            width: 100px;
+            height: 100px;
+            margin: 10px auto;
+            background-color: #0078d7;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Contoh Halaman Interaktif</h1>
+        
+        <div class="box">
+            <h2>Penghitung</h2>
+            <div style="text-align: center; font-size: 24px;" id="angka">0</div>
+            <div style="text-align: center; margin-top: 10px;">
+                <button onclick="kurang()">-</button>
+                <button onclick="tambah()">+</button>
+                <button onclick="reset()">Reset</button>
+            </div>
+        </div>
+
+        <div class="box">
+            <h2>Pengubah Warna</h2>
+            <div id="warna"></div>
+            <div style="text-align: center; margin-top: 10px;">
+                <button onclick="ubahWarna()">Ubah Warna</button>
+            </div>
+        </div>
+
+        <div class="box">
+            <h2>Daftar Tugas</h2>
+            <div style="display: flex; margin-bottom: 10px;">
+                <input type="text" id="tugas" style="flex: 1; padding: 8px; margin-right: 10px; border: 1px solid #ccc;" placeholder="Tambah tugas baru...">
+                <button onclick="tambahTugas()">Tambah</button>
+            </div>
+            <ul id="daftarTugas"></ul>
+        </div>
+
+        <footer>
+            <p>Untuk menjalankan halaman ini di VS Code, pasang ekstensi "Live Server" dan klik kanan file HTML untuk membuka dengan Live Server</p>
+        </footer>
+    </div>
+
+    <script>
+        // Fungsi penghitung
+        let nilai = 0;
+        
+        function tambah() {
+            nilai++;
+            document.getElementById('angka').textContent = nilai;
+        }
+        
+        function kurang() {
+            nilai--;
+            document.getElementById('angka').textContent = nilai;
+        }
+        
+        function reset() {
+            nilai = 0;
+            document.getElementById('angka').textContent = nilai;
+        }
+
+        // Fungsi pengubah warna
+        function ubahWarna() {
+            const warna = '#' + Math.floor(Math.random()*16777215).toString(16);
+            document.getElementById('warna').style.backgroundColor = warna;
+        }
+
+        // Fungsi daftar tugas
+        function tambahTugas() {
+            const input = document.getElementById('tugas');
+            const teks = input.value.trim();
+            
+            if (teks) {
+                const daftar = document.getElementById('daftarTugas');
+                const li = document.createElement('li');
+                li.style.padding = '8px';
+                li.style.marginBottom = '5px';
+                li.style.display = 'flex';
+                li.style.justifyContent = 'space-between';
+                
+                const span = document.createElement('span');
+                span.textContent = teks;
+                
+                const tombolHapus = document.createElement('button');
+                tombolHapus.textContent = 'Hapus';
+                tombolHapus.style.backgroundColor = '#d9534f';
+                tombolHapus.onclick = function() {
+                    daftar.removeChild(li);
+                };
+                
+                li.appendChild(span);
+                li.appendChild(tombolHapus);
+                daftar.appendChild(li);
+                
+                input.value = '';
+            }
+        }
+
+        // Fungsi enter untuk input tugas
+        document.getElementById('tugas').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                tambahTugas();
+            }
+        });
+    </script>
+</body>
+</html>
